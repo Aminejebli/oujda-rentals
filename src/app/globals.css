@@ -45,6 +45,48 @@
   --foreground: #0f172a;
 }
 
+/* Dark mode color palette */
+.dark {
+  /* Background and foreground - Dark mode */
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  
+  /* Adjusted colors for dark mode */
+  --color-slate-50: #0f172a;
+  --color-slate-100: #1e293b;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #64748b;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #cbd5e1;
+  --color-slate-700: #e2e8f0;
+  --color-slate-800: #f1f5f9;
+  --color-slate-900: #f8fafc;
+  --color-slate-950: #ffffff;
+  
+  --color-emerald-50: #134e4a;
+  --color-emerald-100: #115e59;
+  --color-emerald-200: #0f766e;
+  --color-emerald-300: #0d9488;
+  --color-emerald-400: #14b8a6;
+  --color-emerald-500: #2dd4bf;
+  --color-emerald-600: #5eead4;
+  --color-emerald-700: #99f6e4;
+  --color-emerald-800: #ccfbf1;
+  --color-emerald-900: #f0fdf9;
+  
+  --color-amber-50: #78350f;
+  --color-amber-100: #92400e;
+  --color-amber-500: #fbbf24;
+  --color-amber-600: #fcd34d;
+  
+  --color-red-500: #f87171;
+  --color-red-600: #fca5a5;
+  
+  --color-green-500: #4ade80;
+  --color-green-600: #86efac;
+}
+
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -236,13 +278,6 @@ html {
 
 .spacing-section-compact {
   @apply px-6 py-8 sm:px-8 lg:px-12;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
