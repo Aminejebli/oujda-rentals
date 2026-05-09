@@ -12,78 +12,113 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
-      <section className="bg-white px-5 py-12">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div>
-            <p className="mb-3 text-sm font-semibold text-emerald-700">
-              Car rental marketplace in Oujda
-            </p>
-
-            <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-              Find trusted rental cars in Oujda, fast.
-            </h1>
-
-            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
-              Compare local agencies, check daily prices, and contact the
-              agency directly on WhatsApp before you book.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/cars"
-                className="rounded-md bg-emerald-700 px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-emerald-800"
-              >
-                Browse cars
-              </Link>
-
-              <Link
-                href="/agencies"
-                className="rounded-md border border-slate-300 px-5 py-3 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
-              >
-                View agencies
-              </Link>
-            </div>
-
-            <div className="mt-8 grid grid-cols-3 gap-3">
-              <div className="rounded-md bg-slate-50 p-4">
-                <p className="text-2xl font-bold">{cars.length}</p>
-                <p className="mt-1 text-xs text-slate-600">Demo cars</p>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-emerald-50 to-white px-5 py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            {/* Hero Content */}
+            <div className="space-y-8">
+              <div>
+                <p className="mb-4 text-sm font-semibold text-emerald-700 uppercase tracking-wide">
+                  Location voiture Oujda • تأجير سيارات وجدة
+                </p>
+                <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+                  Louez votre voiture facilement à Oujda
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-slate-600 max-w-xl">
+                  Comparez les agences locales, vérifiez les prix journaliers, et contactez directement l'agence sur WhatsApp avant de réserver.
+                </p>
               </div>
 
-              <div className="rounded-md bg-slate-50 p-4">
-                <p className="text-2xl font-bold">{agencies.length}</p>
-                <p className="mt-1 text-xs text-slate-600">Agencies</p>
+              {/* Search Bar */}
+              <div className="max-w-md">
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Rechercher une voiture..."
+                    className="flex-1 rounded-lg border border-slate-300 px-4 py-3 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  />
+                  <Link
+                    href="/cars"
+                    className="rounded-lg bg-emerald-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                  >
+                    Rechercher
+                  </Link>
+                </div>
               </div>
 
-              <div className="rounded-md bg-slate-50 p-4">
-                <p className="text-2xl font-bold">24/7</p>
-                <p className="mt-1 text-xs text-slate-600">WhatsApp</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-            <p className="text-sm font-semibold text-slate-700">
-              Popular pickup areas
-            </p>
-
-            <div className="mt-4 grid gap-3">
-              {pickupAreas.map((area) => (
+              {/* CTA Buttons */}
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <Link
-                  key={area}
                   href="/cars"
-                  className="flex items-center justify-between rounded-md border border-slate-200 bg-white px-4 py-3 text-sm font-semibold transition hover:border-emerald-600"
+                  className="rounded-lg bg-emerald-700 px-8 py-4 text-center text-sm font-semibold text-white transition hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                 >
-                  <span>{area}</span>
-                  <span className="text-emerald-700">View cars</span>
+                  Voir les voitures disponibles
                 </Link>
-              ))}
+                <a
+                  href="https://wa.me/212600000000?text=Salam, je veux louer une voiture à Oujda"
+                  className="rounded-lg border border-slate-300 bg-white px-8 py-4 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
+                >
+                  Contact WhatsApp
+                </a>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="flex flex-wrap items-center gap-6 text-sm text-slate-600">
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500"></div>
+                  <span>Agences vérifiées</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500"></div>
+                  <span>Réponse rapide 24/7</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500"></div>
+                  <span>Livraison aéroport</span>
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="rounded-lg bg-white p-4 shadow-sm border border-slate-200">
+                  <p className="text-2xl font-bold text-slate-900">{cars.length}</p>
+                  <p className="text-xs text-slate-600">Voitures disponibles</p>
+                </div>
+                <div className="rounded-lg bg-white p-4 shadow-sm border border-slate-200">
+                  <p className="text-2xl font-bold text-slate-900">{agencies.length}</p>
+                  <p className="text-xs text-slate-600">Agences partenaires</p>
+                </div>
+                <div className="rounded-lg bg-white p-4 shadow-sm border border-slate-200">
+                  <p className="text-2xl font-bold text-slate-900">4.8</p>
+                  <p className="text-xs text-slate-600">Note moyenne</p>
+                </div>
+              </div>
             </div>
 
-            <p className="mt-5 text-sm leading-6 text-slate-600">
-              Built for quick comparison and direct WhatsApp contact with local
-              Oujda rental agencies.
-            </p>
+            {/* Hero Image */}
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl">
+                <div className="aspect-[4/3] w-full">
+                  <img
+                    src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Voiture de location moderne à Oujda"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="absolute bottom-4 left-4 right-4 rounded-lg bg-white/90 backdrop-blur-sm p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold text-slate-900">Dacia Logan</p>
+                      <p className="text-sm text-slate-600">À partir de 250 DH/jour</p>
+                    </div>
+                    <div className="rounded-full bg-emerald-100 px-3 py-1">
+                      <span className="text-xs font-semibold text-emerald-700">Disponible</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
