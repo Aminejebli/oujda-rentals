@@ -1,0 +1,106 @@
+{
+  "header": {
+    "cars": "السيارات",
+    "agencies": "الوكالات",
+    "whatsapp": "واتساب",
+    "language": "اللغة",
+    "theme": "الوضع",
+    "light": "فاتح",
+    "dark": "داكن"
+  },
+  "hero": {
+    "pill": "وكالات محلية موثوقة",
+    "title": "ابحث عن سيارتك في وجدة خلال دقائق",
+    "description": "قارن وكالات تأجير السيارات المحلية، تواصل معهم عبر واتساب واستلم سيارتك بسرعة وخدمة موثوقة.",
+    "searchPlaceholder": "ابحث عن ماركة أو موديل أو وكالة...",
+    "searchButton": "ابحث",
+    "ctaCars": "عرض السيارات",
+    "ctaWhatsApp": "تواصل عبر واتساب",
+    "imageAlt": "سيارة إيجار حديثة في وجدة",
+    "priceStarting": "من 350 درهم/يوم",
+    "available": "متاحة",
+    "featureCars": "السيارات المتاحة",
+    "featureAgencies": "الوكالات الموثوقة",
+    "featuredTitle": "أفضل السيارات جاهزة للتأجير",
+    "featuredDescription": "اكتشف سيارات موثوقة من وكالات وجدة الأفضل بأسعار شفافة.",
+    "quickStartTitle": "كيفية العمل",
+    "quickStartDescription": "التأجير في وجدة سهل. قارن العروض، اختر السيارة، واحجز مباشرة مع الوكالة.",
+    "stepOneTitle": "اختر سيارة",
+    "stepOneDescription": "فلتر حسب الميزانية والفئة وموقع الاستلام.",
+    "stepTwoTitle": "تواصل عبر واتساب",
+    "stepTwoDescription": "ارسل رسالة سريعة لحجز السيارة فورًا.",
+    "stepThreeTitle": "استلم السيارة في وجدة",
+    "stepThreeDescription": "استلم سيارتك من الوكالة أو من المطار.",
+    "trustVerified": "وكالات موثوقة",
+    "trustFastReply": "ردود سريعة",
+    "trustAirport": "توصيل للمطار متاح",
+    "socialProof": "زبائن راضون هذا الشهر"
+  },
+  "cars": {
+    "title": "السيارات في وجدة",
+    "headline": "ابحث عن سيارتك المحلية",
+    "subtitle": "قارن عروض وكالات وجدة، فلتر حسب السعر، وتواصل معهم بسرعة عبر واتساب."
+  },
+  "agencies": {
+    "title": "وكالات التأجير",
+    "headline": "وكالات موثوقة في وجدة",
+    "subtitle": "تصفح الوكالات المحلية، اطلع على سياراتهم، وتواصل معهم مباشرة عبر واتساب."
+  },
+  "filters": {
+    "searchLabel": "بحث",
+    "searchPlaceholder": "ماركة، موديل، وكالة...",
+    "sortBy": "ترتيب حسب",
+    "sort": {
+      "price-low": "السعر: من الأقل للأعلى",
+      "price-high": "السعر: من الأعلى للأقل",
+      "rating": "أفضل تقييم",
+      "name": "الاسم A-Z"
+    },
+    "category": "الفئة",
+    "transmission": "ناقل الحركة",
+    "fuel": "الوقود",
+    "pickupArea": "منطقة الاستلام",
+    "priceRange": "السعر اليومي (درهم)",
+    "min": "الحد الأدنى",
+    "max": "الحد الأقصى",
+    "resultsFound": "تم العثور على {count} سيارة",
+    "reset": "إعادة ضبط",
+    "noCars": "لم يتم العثور على سيارات",
+    "tryChangingFilters": "حاول تغيير معايير البحث."
+  },
+  "carCard": {
+    "popular": "شائعة",
+    "new": "جديدة",
+    "available": "متاحة",
+    "delivery": "توصيل",
+    "quickReply": "رد سريع",
+    "insuranceIncluded": "التأمين مشمول",
+    "details": "عرض التفاصيل",
+    "whatsapp": "واتساب"
+  },
+  "agencyCard": {
+    "cars": "سيارات",
+    "whatsapp": "واتساب",
+    "viewAgency": "عرض الوكالة"
+  },
+  "detail": {
+    "backToCars": "العودة إلى السيارات",
+    "availableFrom": "متاحة من {agency}",
+    "transmission": "ناقل الحركة",
+    "fuel": "الوقود",
+    "seats": "المقاعد",
+    "agencyArea": "منطقة الوكالة",
+    "viewAgency": "عرض الوكالة",
+    "contactWhatsApp": "التواصل عبر واتساب"
+  },
+  "agency": {
+    "backToAgencies": "العودة إلى الوكالات",
+    "profileLabel": "ملف الوكالة",
+    "contactWhatsApp": "التواصل عبر واتساب",
+    "location": "الموقع",
+    "rating": "التقييم",
+    "phone": "الهاتف",
+    "carsHeading": "سيارات {name}",
+    "carsAvailable": "{count} سيارة متاحة لدى هذه الوكالة."
+  }
+}

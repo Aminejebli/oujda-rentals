@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Header } from "@/components/Header";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Location Voiture Oujda | Louez facilement | تأجير سيارات وجدة",
-  description: "Comparez les agences de location de voitures à Oujda. Prix transparents, contact direct WhatsApp, livraison aéroport.",
+  title: "Oujda Rentals | Location Voiture Maroc | تأجير سيارات وجدة",
+  description: "Plateforme de location de voitures à Oujda. Comparez les prix, contactez directement les agences sur WhatsApp. Service rapide et sécurisé au Maroc.",
 };
 
 export default function RootLayout({
@@ -16,12 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="h-full antialiased">
-      <body className="flex min-h-full flex-col">
-        <ErrorBoundary>
-          <PerformanceMonitor />
-          <Header />
-          {children}
-        </ErrorBoundary>
+      <body className="flex min-h-full flex-col font-sans">
+        <ThemeProvider>
+          <ErrorBoundary>
+            <PerformanceMonitor />
+            {children}
+          </ErrorBoundary>
+        </ThemeProvider>
       </body>
     </html>
   );

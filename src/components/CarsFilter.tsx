@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import type { Agency } from "@/data/agencies";
 import type { Car } from "@/data/cars";
+import { sortOptions } from "@/data/filters";
 import { CarCard } from "./CarCard";
 import { CarCardSkeleton } from "./Skeletons";
 
@@ -12,6 +14,7 @@ type CarsFilterProps = {
 };
 
 export function CarsFilter({ cars, agencies }: CarsFilterProps) {
+  const t = useTranslations();
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [transmission, setTransmission] = useState("All");
@@ -22,23 +25,24 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
   const [sortBy, setSortBy] = useState("price-low");
   const [isLoading, setIsLoading] = useState(false);
 
-  // Get unique values for filters
+  useEffect(() => {
+    setIsLoading(true);
+    const timeout = window.setTimeout(() => setIsLoading(false), 150);
+    return () => window.clearTimeout(timeout);
+  }, [searchQuery, category, transmission, fuel, pickupArea, minPrice, maxPrice, sortBy]);
+
   const categories = useMemo(() => ["All", ...new Set(cars.map((car) => car.category))], [cars]);
   const transmissions = useMemo(() => ["All", ...new Set(cars.map((car) => car.transmission))], [cars]);
   const fuels = useMemo(() => ["All", ...new Set(cars.map((car) => car.fuel))], [cars]);
   const pickupAreas = useMemo(() => ["All", ...new Set(agencies.map((agency) => agency.area))], [agencies]);
 
-  // Filter and sort cars
   const filteredAndSortedCars = useMemo(() => {
-    setIsLoading(true);
-    // Simulate brief loading for better UX
-    setTimeout(() => setIsLoading(false), 150);
-
     let filtered = cars.filter((car) => {
       const agency = agencies.find((a) => a.id === car.agencyId);
       if (!agency) return false;
 
-      const matchesSearch = searchQuery === "" ||
+      const matchesSearch =
+        searchQuery === "" ||
         car.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         agency.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         car.category.toLowerCase().includes(searchQuery.toLowerCase());
@@ -49,14 +53,20 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
       const matchesPickupArea = pickupArea === "All" || agency.area === pickupArea;
 
       const carPrice = car.price;
-      const matchesMinPrice = minPrice === "" || carPrice >= parseInt(minPrice);
-      const matchesMaxPrice = maxPrice === "" || carPrice <= parseInt(maxPrice);
+      const matchesMinPrice = minPrice === "" || carPrice >= parseInt(minPrice, 10);
+      const matchesMaxPrice = maxPrice === "" || carPrice <= parseInt(maxPrice, 10);
 
-      return matchesSearch && matchesCategory && matchesTransmission && matchesFuel &&
-             matchesPickupArea && matchesMinPrice && matchesMaxPrice;
+      return (
+        matchesSearch &&
+        matchesCategory &&
+        matchesTransmission &&
+        matchesFuel &&
+        matchesPickupArea &&
+        matchesMinPrice &&
+        matchesMaxPrice
+      );
     });
 
-    // Sort cars
     filtered.sort((a, b) => {
       const priceA = a.price;
       const priceB = b.price;
@@ -66,10 +76,11 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
           return priceA - priceB;
         case "price-high":
           return priceB - priceA;
-        case "rating":
-          const agencyA = agencies.find(ag => ag.id === a.agencyId);
-          const agencyB = agencies.find(ag => ag.id === b.agencyId);
+        case "rating": {
+          const agencyA = agencies.find((ag) => ag.id === a.agencyId);
+          const agencyB = agencies.find((ag) => ag.id === b.agencyId);
           return (agencyB?.rating || 0) - (agencyA?.rating || 0);
+        }
         case "name":
           return a.name.localeCompare(b.name);
         default:
@@ -93,22 +104,20 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
 
   return (
     <>
-      {/* Search and Sort Bar */}
-      <section className="mt-6 rounded-lg border border-slate-200 bg-white p-4">
+      <section className="mt-6 rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-950">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end">
-          {/* Search Input */}
           <div className="flex-1">
-            <label htmlFor="search" className="text-sm font-medium text-slate-700">
-              Rechercher
+            <label htmlFor="search" className="text-sm font-medium text-slate-700 dark:text-slate-200">
+              {t("filters.searchLabel")}
             </label>
             <div className="relative mt-2">
               <input
                 id="search"
                 type="text"
-                placeholder="Marque, modèle, agence..."
+                placeholder={t("filters.searchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-md border border-slate-300 bg-white px-4 py-3 pl-10 text-sm outline-none focus:border-emerald-600"
+                className="w-full rounded-md border border-slate-300 bg-white px-4 py-3 pl-10 text-sm outline-none focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
               />
               <svg className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -116,39 +125,37 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
             </div>
           </div>
 
-          {/* Sort By */}
           <div className="w-full lg:w-48">
-            <label htmlFor="sort" className="text-sm font-medium text-slate-700">
-              Trier par
+            <label htmlFor="sort" className="text-sm font-medium text-slate-700 dark:text-slate-200">
+              {t("filters.sortBy")}
             </label>
             <select
               id="sort"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600"
+              className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
             >
-              <option value="price-low">Prix croissant</option>
-              <option value="price-high">Prix décroissant</option>
-              <option value="rating">Meilleure note</option>
-              <option value="name">Nom A-Z</option>
+              {sortOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {t(f"filters.sort.{option.value}")}
+                </option>
+              ))}
             </select>
           </div>
         </div>
       </section>
 
-      {/* Advanced Filters */}
-      <section className="mt-4 rounded-lg border border-slate-200 bg-white p-4">
+      <section className="mt-4 rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-950">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
-          {/* Category */}
           <div>
-            <label htmlFor="category" className="text-sm font-medium text-slate-700">
-              Catégorie
+            <label htmlFor="category" className="text-sm font-medium text-slate-700 dark:text-slate-200">
+              {t("filters.category")}
             </label>
             <select
               id="category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600"
+              className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
             >
               {categories.map((item) => (
                 <option key={item} value={item}>
@@ -158,16 +165,15 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
             </select>
           </div>
 
-          {/* Transmission */}
           <div>
-            <label htmlFor="transmission" className="text-sm font-medium text-slate-700">
-              Transmission
+            <label htmlFor="transmission" className="text-sm font-medium text-slate-700 dark:text-slate-200">
+              {t("filters.transmission")}
             </label>
             <select
               id="transmission"
               value={transmission}
               onChange={(e) => setTransmission(e.target.value)}
-              className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600"
+              className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
             >
               {transmissions.map((item) => (
                 <option key={item} value={item}>
@@ -177,16 +183,15 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
             </select>
           </div>
 
-          {/* Fuel */}
           <div>
-            <label htmlFor="fuel" className="text-sm font-medium text-slate-700">
-              Carburant
+            <label htmlFor="fuel" className="text-sm font-medium text-slate-700 dark:text-slate-200">
+              {t("filters.fuel")}
             </label>
             <select
               id="fuel"
               value={fuel}
               onChange={(e) => setFuel(e.target.value)}
-              className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600"
+              className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
             >
               {fuels.map((item) => (
                 <option key={item} value={item}>
@@ -196,16 +201,15 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
             </select>
           </div>
 
-          {/* Pickup Area */}
           <div>
-            <label htmlFor="pickupArea" className="text-sm font-medium text-slate-700">
-              Zone de retrait
+            <label htmlFor="pickupArea" className="text-sm font-medium text-slate-700 dark:text-slate-200">
+              {t("filters.pickupArea")}
             </label>
             <select
               id="pickupArea"
               value={pickupArea}
               onChange={(e) => setPickupArea(e.target.value)}
-              className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600"
+              className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
             >
               {pickupAreas.map((item) => (
                 <option key={item} value={item}>
@@ -215,46 +219,43 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
             </select>
           </div>
 
-          {/* Price Range */}
           <div className="sm:col-span-2 lg:col-span-2 xl:col-span-2">
-            <label className="text-sm font-medium text-slate-700">
-              Prix par jour (DH)
+            <label className="text-sm font-medium text-slate-700 dark:text-slate-200">
+              {t("filters.priceRange")}
             </label>
             <div className="mt-2 flex gap-2">
               <input
                 type="number"
-                placeholder="Min"
+                placeholder={t("filters.min")}
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
-                className="w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600"
+                className="w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
               />
               <input
                 type="number"
-                placeholder="Max"
+                placeholder={t("filters.max")}
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
-                className="w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600"
+                className="w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-sm outline-none focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
               />
             </div>
           </div>
         </div>
 
-        {/* Results and Reset */}
         <div className="mt-4 flex items-center justify-between">
-          <p className="text-sm text-slate-600">
-            {filteredAndSortedCars.length} voiture{filteredAndSortedCars.length !== 1 ? 's' : ''} trouvée{filteredAndSortedCars.length !== 1 ? 's' : ''}
+          <p className="text-sm text-slate-600 dark:text-slate-300">
+            {t("filters.resultsFound", { count: filteredAndSortedCars.length })}
           </p>
           <button
             type="button"
             onClick={resetFilters}
-            className="rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+            className="rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-900"
           >
-            Réinitialiser
+            {t("filters.reset")}
           </button>
         </div>
       </section>
 
-      {/* Results */}
       {isLoading ? (
         <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
@@ -273,14 +274,12 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
           })}
         </div>
       ) : (
-        <div className="mt-6 rounded-lg border border-dashed border-slate-300 bg-white p-6 text-center">
+        <div className="mt-6 rounded-lg border border-dashed border-slate-300 bg-white p-6 text-center dark:border-slate-700 dark:bg-slate-950">
           <svg className="mx-auto h-12 w-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2H8V5z" />
           </svg>
-          <h2 className="mt-4 font-semibold text-slate-900">Aucune voiture trouvée</h2>
-          <p className="mt-2 text-sm text-slate-600">
-            Essayez de modifier vos critères de recherche.
-          </p>
+          <h2 className="mt-4 font-semibold text-slate-900 dark:text-slate-100">{t("filters.noCars")}</h2>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{t("filters.tryChangingFilters")}</p>
         </div>
       )}
     </>

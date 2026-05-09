@@ -1,15 +1,241 @@
 @import "tailwindcss";
 
 :root {
+  /* Moroccan-inspired color palette */
+  --color-emerald-50: #f0fdf9;
+  --color-emerald-100: #ccfbf1;
+  --color-emerald-200: #99f6e4;
+  --color-emerald-300: #5eead4;
+  --color-emerald-400: #2dd4bf;
+  --color-emerald-500: #14b8a6;
+  --color-emerald-600: #0d9488;
+  --color-emerald-700: #0f766e;
+  --color-emerald-800: #115e59;
+  --color-emerald-900: #134e4a;
+
+  /* Moroccan gold accents */
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+
+  /* Professional grays */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+
+  /* Moroccan red accents */
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+
+  /* Success green */
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+
+  /* Background and foreground */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-slate-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-slate-400);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* Gradient backgrounds */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-emerald-600) 0%, var(--color-emerald-700) 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, var(--color-slate-50) 0%, var(--color-white) 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-amber-500) 0%, var(--color-amber-600) 100%);
+}
+
+/* Shadow system */
+.shadow-soft {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-medium {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.shadow-strong {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.16);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-emerald-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-emerald-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform hover:-translate-y-0.5;
+}
+
+.btn-secondary {
+  @apply bg-white text-slate-700 font-semibold px-6 py-3 rounded-lg border border-slate-300 transition-all duration-200 hover:bg-slate-50 hover:border-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+}
+
+.btn-whatsapp {
+  @apply bg-green-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-green-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 flex items-center gap-2;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-xl border border-slate-200 shadow-soft transition-all duration-300 hover:shadow-medium hover:border-emerald-200;
+}
+
+.card-elevated {
+  @apply bg-white rounded-xl border border-slate-200 shadow-medium transition-all duration-300 hover:shadow-strong hover:border-emerald-200;
+}
+
+/* Badge styles */
+.badge-verified {
+  @apply inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-700;
+}
+
+.badge-featured {
+  @apply inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-700;
+}
+
+.badge-available {
+  @apply inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-1 text-xs font-semibold text-green-700;
+}
+
+.badge-limited {
+  @apply inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-1 text-xs font-semibold text-red-700;
+}
+
+/* Typography */
+.text-display {
+  @apply text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl;
+}
+
+.text-heading-1 {
+  @apply text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl;
+}
+
+.text-heading-2 {
+  @apply text-2xl font-bold text-slate-900 sm:text-3xl;
+}
+
+.text-heading-3 {
+  @apply text-xl font-semibold text-slate-900 sm:text-2xl;
+}
+
+.text-body {
+  @apply text-slate-600 leading-relaxed;
+}
+
+.text-caption {
+  @apply text-sm text-slate-500;
+}
+
+/* Spacing system */
+.spacing-section {
+  @apply px-6 py-12 sm:px-8 sm:py-16 lg:px-12 lg:py-20;
+}
+
+.spacing-container {
+  @apply mx-auto max-w-7xl;
+}
+
+.spacing-section-compact {
+  @apply px-6 py-8 sm:px-8 lg:px-12;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +248,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }

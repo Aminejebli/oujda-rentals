@@ -1,47 +1,86 @@
-export type Agency = {
-  id: number;
-  name: string;
-  slug: string;
-  city: string;
-  area: string;
-  phone: string;
-  whatsapp: string;
-  rating: number;
-  description: string;
-};
+import type { Agency } from "@/types/domain";
+export type { Agency } from "@/types/domain";
 
 export const agencies: Agency[] = [
   {
     id: 1,
-    name: "Oujda Auto Rent",
-    slug: "oujda-auto-rent",
+    name: "Auto Plus Oujda",
+    slug: "auto-plus-oujda",
     city: "Oujda",
-    area: "City Center",
-    phone: "+212 600 000 000",
-    whatsapp: "212600000000",
-    rating: 4.8,
-    description: "Local car rental agency near Oujda city center.",
+    area: "Centre Ville",
+    phone: "+212 536 000 000",
+    whatsapp: "212536000000",
+    rating: 4.9,
+    description: "Agence familiale depuis 2015, spécialisée dans la location de voitures neuves et récentes. Service personnalisé avec chauffeur disponible.",
+    isPremium: true,
+    responseTime: "< 15 min",
+    totalClients: 2500,
   },
   {
     id: 2,
-    name: "Atlas Cars Oujda",
-    slug: "atlas-cars-oujda",
+    name: "Atlas Car Rental",
+    slug: "atlas-car-rental",
     city: "Oujda",
-    area: "Oujda Airport",
-    phone: "+212 600 000 001",
-    whatsapp: "212600000001",
+    area: "Aéroport Angads",
+    phone: "+212 536 111 111",
+    whatsapp: "212536111111",
     rating: 4.7,
-    description: "Airport-friendly rental agency with economy and family cars.",
+    description: "Spécialiste de la location aéroport avec livraison gratuite 24/7. Flotte moderne adaptée aux voyageurs d'affaires et touristes.",
+    isPremium: true,
+    responseTime: "< 30 min",
+    totalClients: 1800,
   },
   {
     id: 3,
-    name: "Oriental Rent Car",
-    slug: "oriental-rent-car",
+    name: "Mediterranean Cars",
+    slug: "mediterranean-cars",
     city: "Oujda",
     area: "Hay Al Qods",
-    phone: "+212 600 000 002",
-    whatsapp: "212600000002",
+    phone: "+212 536 222 222",
+    whatsapp: "212536222222",
     rating: 4.6,
-    description: "Trusted local agency serving Oujda and nearby cities.",
+    description: "Votre partenaire local pour tous vos déplacements. Voitures économiques et familiales, assurance complète incluse.",
+    responseTime: "< 45 min",
+    totalClients: 1200,
+  },
+  {
+    id: 4,
+    name: "Royal Location",
+    slug: "royal-location",
+    city: "Oujda",
+    area: "Route de Berkane",
+    phone: "+212 536 333 333",
+    whatsapp: "212536333333",
+    rating: 4.8,
+    description: "Service premium avec véhicules haut de gamme. Idéal pour événements spéciaux et voyages d'affaires importants.",
+    isPremium: true,
+    responseTime: "< 20 min",
+    totalClients: 950,
+  },
+  {
+    id: 5,
+    name: "Budget Cars Oujda",
+    slug: "budget-cars-oujda",
+    city: "Oujda",
+    area: "Place du 16 Novembre",
+    phone: "+212 536 444 444",
+    whatsapp: "212536444444",
+    rating: 4.4,
+    description: "Prix compétitifs pour locations longue durée. Parfait pour expatriés et résidents locaux.",
+    responseTime: "< 60 min",
+    totalClients: 2100,
+  },
+  {
+    id: 6,
+    name: "Green Mobility",
+    slug: "green-mobility",
+    city: "Oujda",
+    area: "Université Mohammed Premier",
+    phone: "+212 536 555 555",
+    whatsapp: "212536555555",
+    rating: 4.5,
+    description: "Flotte éco-responsable avec véhicules hybrides et électriques. Engagement environnemental et service moderne.",
+    responseTime: "< 40 min",
+    totalClients: 780,
   },
 ];

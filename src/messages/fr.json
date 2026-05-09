@@ -1,0 +1,106 @@
+{
+  "header": {
+    "cars": "Voitures",
+    "agencies": "Agences",
+    "whatsapp": "WhatsApp",
+    "language": "Langue",
+    "theme": "Thème",
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "hero": {
+    "pill": "Agences locales vérifiées",
+    "title": "Trouvez votre voiture de location à Oujda en quelques minutes",
+    "description": "Comparez les agences de location locales, contactez-les sur WhatsApp et récupérez votre voiture rapidement avec un service fiable.",
+    "searchPlaceholder": "Cherchez une marque, un modèle ou une agence...",
+    "searchButton": "Rechercher",
+    "ctaCars": "Voir toutes les voitures",
+    "ctaWhatsApp": "Contactez-nous sur WhatsApp",
+    "imageAlt": "Voiture de location moderne à Oujda",
+    "priceStarting": "À partir de 350 DH/jour",
+    "available": "Disponible",
+    "featureCars": "Voitures disponibles",
+    "featureAgencies": "Agences fiables",
+    "featuredTitle": "Voitures phares prêtes à louer",
+    "featuredDescription": "Découvrez des véhicules de confiance auprès des meilleures agences de Oujda avec des tarifs transparents.",
+    "quickStartTitle": "Comment ça marche",
+    "quickStartDescription": "Louer à Oujda est simple. Comparez les offres, choisissez une voiture et réservez directement auprès de l'agence.",
+    "stepOneTitle": "Choisissez une voiture",
+    "stepOneDescription": "Filtrez par budget, catégorie et lieu de retrait.",
+    "stepTwoTitle": "Contactez sur WhatsApp",
+    "stepTwoDescription": "Envoyez un message rapide pour réserver la voiture immédiatement.",
+    "stepThreeTitle": "Retirez à Oujda",
+    "stepThreeDescription": "Récupérez votre véhicule auprès de l'agence ou à l'aéroport.",
+    "trustVerified": "Agences vérifiées",
+    "trustFastReply": "Réponse rapide",
+    "trustAirport": "Livraison aéroport disponible",
+    "socialProof": "clients satisfaits ce mois-ci"
+  },
+  "cars": {
+    "title": "Voitures à Oujda",
+    "headline": "Trouvez votre voiture de location locale",
+    "subtitle": "Comparez les offres des agences d'Oujda, filtrez par prix et contactez-les rapidement sur WhatsApp."
+  },
+  "agencies": {
+    "title": "Agences de location",
+    "headline": "Agences fiables à Oujda",
+    "subtitle": "Parcourez les agences locales, découvrez leurs véhicules et contactez-les directement sur WhatsApp."
+  },
+  "filters": {
+    "searchLabel": "Rechercher",
+    "searchPlaceholder": "Marque, modèle, agence...",
+    "sortBy": "Trier par",
+    "sort": {
+      "price-low": "Prix : croissant",
+      "price-high": "Prix : décroissant",
+      "rating": "Meilleure note",
+      "name": "Nom A-Z"
+    },
+    "category": "Catégorie",
+    "transmission": "Transmission",
+    "fuel": "Carburant",
+    "pickupArea": "Zone de retrait",
+    "priceRange": "Prix par jour (DH)",
+    "min": "Min",
+    "max": "Max",
+    "resultsFound": "{count} voiture{s}",
+    "reset": "Réinitialiser",
+    "noCars": "Aucune voiture trouvée",
+    "tryChangingFilters": "Essayez de modifier vos critères de recherche."
+  },
+  "carCard": {
+    "popular": "Populaire",
+    "new": "Nouveau",
+    "available": "Disponible",
+    "delivery": "Livraison",
+    "quickReply": "Réponse rapide",
+    "insuranceIncluded": "Assurance incluse",
+    "details": "Voir détails",
+    "whatsapp": "WhatsApp"
+  },
+  "agencyCard": {
+    "cars": "voitures",
+    "whatsapp": "WhatsApp",
+    "viewAgency": "Voir agence"
+  },
+  "detail": {
+    "backToCars": "Retour aux voitures",
+    "availableFrom": "Disponible chez {agency}",
+    "transmission": "Transmission",
+    "fuel": "Carburant",
+    "seats": "Places",
+    "agencyArea": "Zone de l'agence",
+    "viewAgency": "Voir agence",
+    "contactWhatsApp": "Contactez sur WhatsApp"
+  },
+  "agency": {
+    "backToAgencies": "Retour aux agences",
+    "profileLabel": "Profil de l'agence",
+    "contactWhatsApp": "Contactez sur WhatsApp",
+    "location": "Emplacement",
+    "rating": "Note",
+    "phone": "Téléphone",
+    "carsHeading": "Voitures de {name}",
+    "carsAvailable": "{count} voiture{s} disponibles auprès de cette agence."
+  }
+}

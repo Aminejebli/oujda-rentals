@@ -1,0 +1,106 @@
+{
+  "header": {
+    "cars": "Cars",
+    "agencies": "Agencies",
+    "whatsapp": "WhatsApp",
+    "language": "Language",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "hero": {
+    "pill": "Verified local agencies",
+    "title": "Find your rental car in Oujda in minutes",
+    "description": "Compare local car rental agencies, contact them by WhatsApp, and pick up your vehicle fast with trusted service.",
+    "searchPlaceholder": "Search brand, model, or agency...",
+    "searchButton": "Search",
+    "ctaCars": "Browse cars",
+    "ctaWhatsApp": "Contact on WhatsApp",
+    "imageAlt": "Modern rental car in Oujda",
+    "priceStarting": "From 350 DH/day",
+    "available": "Available",
+    "featureCars": "Available cars",
+    "featureAgencies": "Reliable agencies",
+    "featuredTitle": "Top cars ready to rent",
+    "featuredDescription": "Discover trusted vehicles from leading Oujda agencies with transparent pricing.",
+    "quickStartTitle": "How it works",
+    "quickStartDescription": "Renting in Oujda is simple. Compare offers, choose a car, and book directly with the agency.",
+    "stepOneTitle": "Choose a car",
+    "stepOneDescription": "Filter by budget, category, and pickup area.",
+    "stepTwoTitle": "Contact on WhatsApp",
+    "stepTwoDescription": "Send a quick message to reserve the car instantly.",
+    "stepThreeTitle": "Pick up in Oujda",
+    "stepThreeDescription": "Collect your vehicle from the agency or airport.",
+    "trustVerified": "Verified agencies",
+    "trustFastReply": "Fast response times",
+    "trustAirport": "Airport delivery available",
+    "socialProof": "happy customers this month"
+  },
+  "cars": {
+    "title": "Cars in Oujda",
+    "headline": "Find your local rental car",
+    "subtitle": "Compare offers from Oujda agencies, filter by price, and contact them quickly on WhatsApp."
+  },
+  "agencies": {
+    "title": "Rental agencies",
+    "headline": "Trusted agencies in Oujda",
+    "subtitle": "Browse local agencies, review their vehicles, and contact them directly on WhatsApp."
+  },
+  "filters": {
+    "searchLabel": "Search",
+    "searchPlaceholder": "Brand, model, agency...",
+    "sortBy": "Sort by",
+    "sort": {
+      "price-low": "Price: low to high",
+      "price-high": "Price: high to low",
+      "rating": "Top rating",
+      "name": "Name A-Z"
+    },
+    "category": "Category",
+    "transmission": "Transmission",
+    "fuel": "Fuel",
+    "pickupArea": "Pickup area",
+    "priceRange": "Daily price (DH)",
+    "min": "Min",
+    "max": "Max",
+    "resultsFound": "{count} cars found",
+    "reset": "Reset",
+    "noCars": "No cars found",
+    "tryChangingFilters": "Try changing your search criteria."
+  },
+  "carCard": {
+    "popular": "Popular",
+    "new": "New",
+    "available": "Available",
+    "delivery": "Delivery",
+    "quickReply": "Quick reply",
+    "insuranceIncluded": "Insurance included",
+    "details": "View details",
+    "whatsapp": "WhatsApp"
+  },
+  "agencyCard": {
+    "cars": "cars",
+    "whatsapp": "WhatsApp",
+    "viewAgency": "View agency"
+  },
+  "detail": {
+    "backToCars": "Back to cars",
+    "availableFrom": "Available from {agency}",
+    "transmission": "Transmission",
+    "fuel": "Fuel",
+    "seats": "Seats",
+    "agencyArea": "Agency area",
+    "viewAgency": "View agency",
+    "contactWhatsApp": "Contact on WhatsApp"
+  },
+  "agency": {
+    "backToAgencies": "Back to agencies",
+    "profileLabel": "Agency profile",
+    "contactWhatsApp": "Contact on WhatsApp",
+    "location": "Location",
+    "rating": "Rating",
+    "phone": "Phone",
+    "carsHeading": "Cars from {name}",
+    "carsAvailable": "{count} cars available from this agency."
+  }
+}

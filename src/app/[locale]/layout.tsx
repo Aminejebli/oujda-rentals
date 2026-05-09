@@ -1,0 +1,41 @@
+import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
+import { Header } from "@/components/Header";
+import { defaultLocale, locales, rtlLocales, type Locale } from "@/lib/i18n";
+
+type LocaleLayoutProps = {
+  children: React.ReactNode;
+  params: { locale: string };
+};
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
+  const locale = params.locale as Locale;
+
+  if (!locales.includes(locale)) {
+    notFound();
+  }
+
+  let messages;
+  try {
+    messages = (await import(`../../../messages/${locale}.json`)).default;
+  } catch {
+    notFound();
+  }
+
+  const dir = rtlLocales.includes(locale) ? "rtl" : "ltr";
+
+  return (
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <div dir={dir} className={rtlLocales.includes(locale) ? "rtl" : "ltr"} suppressHydrationWarning>
+        <Header />
+        {children}
+      </div>
+    </NextIntlClientProvider>
+  );
+}
