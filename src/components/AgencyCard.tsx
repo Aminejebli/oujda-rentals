@@ -14,17 +14,21 @@ type AgencyCardProps = {
 export function AgencyCard({ agency, carsCount }: AgencyCardProps) {
   const params = useParams();
   const t = useTranslations();
+
   const locale = (params?.locale as Locale) ?? defaultLocale;
   const prefix = getLocalePath(`/${locale}`, locale);
+
   const whatsappMessage = encodeURIComponent(
-    `Salam, je veux louer une voiture chez ${agency.name} à Oujda. Pouvez-vous me donner les détails ?`
+    `Salam, je veux louer une voiture chez ${agency.name} Ã  Oujda. Pouvez-vous me donner les dÃ©tails ?`
   );
 
   return (
     <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition-colors duration-200 hover:border-emerald-200 dark:border-slate-700 dark:bg-slate-950">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-lg font-bold text-slate-950 dark:text-slate-100">{agency.name}</h2>
+          <h2 className="text-lg font-bold text-slate-950 dark:text-slate-100">
+            {agency.name}
+          </h2>
           <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
             {agency.area}, {agency.city}
           </p>
@@ -58,6 +62,8 @@ export function AgencyCard({ agency, carsCount }: AgencyCardProps) {
 
         <a
           href={`https://wa.me/${agency.whatsapp}?text=${whatsappMessage}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="rounded-md bg-emerald-700 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-emerald-800"
         >
           {t("agencyCard.whatsapp")}

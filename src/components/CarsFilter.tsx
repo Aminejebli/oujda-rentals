@@ -26,9 +26,14 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    const timeout = window.setTimeout(() => setIsLoading(false), 150);
-    return () => window.clearTimeout(timeout);
+    // Avoid setting state synchronously inside the effect body (prevents cascading-render warnings).
+    const startTimeout = window.setTimeout(() => setIsLoading(true), 0);
+    const stopTimeout = window.setTimeout(() => setIsLoading(false), 150);
+
+    return () => {
+      window.clearTimeout(startTimeout);
+      window.clearTimeout(stopTimeout);
+    };
   }, [searchQuery, category, transmission, fuel, pickupArea, minPrice, maxPrice, sortBy]);
 
   const categories = useMemo(() => ["All", ...new Set(cars.map((car) => car.category))], [cars]);
@@ -37,7 +42,7 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
   const pickupAreas = useMemo(() => ["All", ...new Set(agencies.map((agency) => agency.area))], [agencies]);
 
   const filteredAndSortedCars = useMemo(() => {
-    let filtered = cars.filter((car) => {
+    const filtered = [...cars].filter((car) => {
       const agency = agencies.find((a) => a.id === car.agencyId);
       if (!agency) return false;
 
@@ -67,7 +72,7 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
       );
     });
 
-    filtered.sort((a, b) => {
+    const sorted = [...filtered].sort((a, b) => {
       const priceA = a.price;
       const priceB = b.price;
 
@@ -88,7 +93,7 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
       }
     });
 
-    return filtered;
+    return sorted;
   }, [cars, agencies, searchQuery, category, transmission, fuel, pickupArea, minPrice, maxPrice, sortBy]);
 
   const resetFilters = () => {
@@ -137,7 +142,7 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
             >
               {sortOptions.map((option) => (
                 <option key={option.value} value={option.value}>
-                  {t(f"filters.sort.{option.value}")}
+                  {t(`filters.sort.${option.value}`)}
                 </option>
               ))}
             </select>
@@ -275,8 +280,9 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
         </div>
       ) : (
         <div className="mt-6 rounded-lg border border-dashed border-slate-300 bg-white p-6 text-center dark:border-slate-700 dark:bg-slate-950">
-          <svg className="mx-auto h-12 w-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2H8V5z" />
+          <svg className="mx-auto h-12 w-12 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" strokeWidth="2" />
+            <path d="M8 12h8" strokeWidth="2" strokeLinecap="round" />
           </svg>
           <h2 className="mt-4 font-semibold text-slate-900 dark:text-slate-100">{t("filters.noCars")}</h2>
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{t("filters.tryChangingFilters")}</p>

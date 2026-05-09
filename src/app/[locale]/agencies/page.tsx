@@ -1,10 +1,10 @@
 import { AgenciesPage } from "@/components/pages/AgenciesPage";
 import { getAgencies, getCars } from "@/lib/supabase-data";
-import { locales } from "@/lib/i18n";
+import { locales, type Locale } from "@/lib/i18n";
 import { notFound } from "next/navigation";
 
 type PageProps = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
 export const dynamic = "force-dynamic";
@@ -14,7 +14,9 @@ export function generateStaticParams() {
 }
 
 export default async function LocalizedAgenciesPage({ params }: PageProps) {
-  const locale = params.locale;
+  const { locale: localeParam } = await params;
+  const locale = localeParam as Locale;
+
   if (!locales.includes(locale)) {
     notFound();
   }

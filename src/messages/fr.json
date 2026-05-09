@@ -102,5 +102,33 @@
     "phone": "Téléphone",
     "carsHeading": "Voitures de {name}",
     "carsAvailable": "{count} voiture{s} disponibles auprès de cette agence."
+  },
+  "admin": {
+    "title": "Admin",
+    "dashboardTitle": "Tableau de gestion",
+    "dashboardSubtitle": "Plateforme d'administration légère pour gérer les voitures, les agences et les offres en vedette.",
+    "statsTotalCars": "Voitures totales",
+    "statsAvailable": "Disponibles",
+    "statsFeatured": "En vedette",
+    "statsAgencies": "Agences",
+    "carsSectionTitle": "Gestion des voitures",
+    "carsSectionSubtitle": "Mettez à jour la disponibilité et les offres en vedette pour une meilleure visibilité.",
+    "tableVehicle": "Véhicule",
+    "tableAgency": "Agence",
+    "tablePrice": "Prix",
+    "tableStatus": "Statut",
+    "tableActions": "Actions",
+    "statusAvailable": "Disponible",
+    "statusUnavailable": "Indisponible",
+    "buttonHide": "Masquer",
+    "buttonPublish": "Publier",
+    "buttonFeatured": "Vedette",
+    "buttonUnfeatured": "Retirer",
+    "featuredYes": "Vedette",
+    "featuredNo": "Marquer",
+    "sectionAgenciesTitle": "Agences",
+    "sectionAgenciesSubtitle": "Aperçu des agences locales et de leurs notes, avec contact rapide en WhatsApp.",
+    "whatsapp": "WhatsApp",
+    "clients": "clients"
   }
 }

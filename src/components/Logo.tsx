@@ -33,8 +33,8 @@ export function Logo() {
         <div className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-amber-500 shadow-sm"></div>
       </div>
       <div className="hidden sm:block">
-        <h1 className="text-xl font-bold text-slate-900">Oujda Rentals</h1>
-        <p className="text-xs text-slate-600">Location Voiture Maroc</p>
+        <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">Oujda Rentals</h1>
+        <p className="text-xs text-slate-600 dark:text-slate-300">Location Voiture Maroc</p>
       </div>
     </div>
   );

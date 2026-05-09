@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import type { Agency } from "@/data/agencies";
 import type { Car } from "@/data/cars";
-import { defaultLocale, getLocalePath } from "@/lib/i18n";
+import { defaultLocale, getLocalePath, type Locale } from "@/lib/i18n";
 
 type CarDetailPageProps = {
   car: Car;
@@ -16,7 +16,7 @@ type CarDetailPageProps = {
 export function CarDetailPage({ car, agency }: CarDetailPageProps) {
   const t = useTranslations();
   const params = useParams();
-  const locale = (params?.locale as string) ?? defaultLocale;
+  const locale = (params?.locale as Locale) ?? defaultLocale;
   const prefix = getLocalePath(`/${locale}/cars`, locale);
   const whatsappMessage = encodeURIComponent(
     `Salam, je suis intéressé(e) par la location de ${car.name} chez ${agency.name} à Oujda.`
@@ -73,10 +73,15 @@ export function CarDetailPage({ car, agency }: CarDetailPageProps) {
             </div>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <Link href={`/agencies/${agency.slug}`} className="rounded-md border border-slate-300 px-4 py-3 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800">
+              <Link href={`${prefix}/agencies/${agency.slug}`} className="rounded-md border border-slate-300 px-4 py-3 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800">
                 {t('detail.viewAgency')}
               </Link>
-              <a href={`https://wa.me/${agency.whatsapp}?text=${whatsappMessage}`} className="rounded-md bg-emerald-700 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-emerald-800">
+              <a
+                href={`https://wa.me/${agency.whatsapp}?text=${whatsappMessage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md bg-emerald-700 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-emerald-800"
+              >
                 {t('detail.contactWhatsApp')}
               </a>
             </div>

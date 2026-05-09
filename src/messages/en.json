@@ -102,5 +102,33 @@
     "phone": "Phone",
     "carsHeading": "Cars from {name}",
     "carsAvailable": "{count} cars available from this agency."
+  },
+  "admin": {
+    "title": "Admin",
+    "dashboardTitle": "Management dashboard",
+    "dashboardSubtitle": "Light admin platform to manage cars, agencies and featured offers.",
+    "statsTotalCars": "Total cars",
+    "statsAvailable": "Available",
+    "statsFeatured": "Featured",
+    "statsAgencies": "Agencies",
+    "carsSectionTitle": "Car management",
+    "carsSectionSubtitle": "Update availability and featured offers for better visibility.",
+    "tableVehicle": "Vehicle",
+    "tableAgency": "Agency",
+    "tablePrice": "Price",
+    "tableStatus": "Status",
+    "tableActions": "Actions",
+    "statusAvailable": "Available",
+    "statusUnavailable": "Unavailable",
+    "buttonHide": "Hide",
+    "buttonPublish": "Publish",
+    "buttonFeatured": "Mark",
+    "buttonUnfeatured": "Unmark",
+    "featuredYes": "Featured",
+    "featuredNo": "Mark as featured",
+    "sectionAgenciesTitle": "Agencies",
+    "sectionAgenciesSubtitle": "Overview of local agencies and their ratings with quick WhatsApp contact.",
+    "whatsapp": "WhatsApp",
+    "clients": "clients"
   }
 }

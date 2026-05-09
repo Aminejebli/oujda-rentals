@@ -1,9 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 import type { Agency } from "@/data/agencies";
 import type { Car } from "@/data/cars";
+import { defaultLocale, getLocalePath, type Locale } from "@/lib/i18n";
 
 type HomePageProps = {
   cars: Car[];
@@ -12,6 +15,9 @@ type HomePageProps = {
 
 export function HomePage({ cars, agencies }: HomePageProps) {
   const t = useTranslations();
+  const params = useParams();
+  const locale = (params?.locale as Locale) ?? defaultLocale;
+  const prefix = getLocalePath(`/${locale}`, locale);
   const featuredCars = cars.slice(0, 3);
 
   return (
@@ -49,7 +55,7 @@ export function HomePage({ cars, agencies }: HomePageProps) {
                     />
                   </div>
                   <Link
-                    href="/cars"
+                    href={`${prefix}/cars`}
                     className="bg-emerald-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-emerald-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform hover:-translate-y-0.5 whitespace-nowrap sm:px-8"
                   >
                     {t('hero.searchButton')}
@@ -87,13 +93,15 @@ export function HomePage({ cars, agencies }: HomePageProps) {
 
               <div className="flex flex-col gap-3 sm:flex-row pt-4">
                 <Link
-                  href="/cars"
+                  href={`${prefix}/cars`}
                   className="bg-emerald-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-emerald-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 text-center sm:text-left"
                 >
                   {t('hero.ctaCars')}
                 </Link>
                 <a
                   href="https://wa.me/212600000000?text=Salam, je veux louer une voiture à Oujda"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-green-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 flex items-center justify-center gap-2 sm:justify-start"
                 >
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -107,11 +115,14 @@ export function HomePage({ cars, agencies }: HomePageProps) {
             <div className="relative animate-slide-in-right">
               <div className="relative">
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                  <div className="aspect-[4/3] w-full">
-                    <img
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
                       src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                       alt={t('hero.imageAlt')}
-                      className="h-full w-full object-cover"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                      priority
                     />
                   </div>
 

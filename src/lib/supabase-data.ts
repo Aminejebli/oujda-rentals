@@ -90,14 +90,13 @@ export async function getAgencies() {
   const { data, error } = await supabase
     .from("agencies")
     .select(agencySelect)
-    .order("name", { ascending: true })
-    .returns<AgencyRow[]>();
+    .order("name", { ascending: true });
 
   if (error) {
     throw new Error(`Could not load agencies: ${error.message}`);
   }
 
-  return data.map(mapAgency);
+  return (data ?? []).map(mapAgency);
 }
 
 export async function getAgencyBySlug(slug: string) {
@@ -133,8 +132,7 @@ export async function getCars() {
     .from("cars")
     .select(carSelect)
     .eq("available", true)
-    .order("price_per_day", { ascending: true })
-    .returns<CarRow[]>();
+    .order("price_per_day", { ascending: true });
 
   if (error) {
     throw new Error(`Could not load cars: ${error.message}`);
@@ -164,12 +162,11 @@ export async function getCarsByAgencyId(agencyId: number) {
     .select(carSelect)
     .eq("agency_id", agencyId)
     .eq("available", true)
-    .order("price_per_day", { ascending: true })
-    .returns<CarRow[]>();
+    .order("price_per_day", { ascending: true });
 
   if (error) {
     throw new Error(`Could not load agency cars: ${error.message}`);
   }
 
-  return data.map(mapCar);
+  return (data ?? []).map(mapCar);
 }

@@ -37,7 +37,7 @@ export function PerformanceMonitor() {
 
       try {
         observer.observe({ entryTypes: ["largest-contentful-paint"] });
-      } catch (e) {
+      } catch {
         // LCP not supported in some browsers
       }
 

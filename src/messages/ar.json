@@ -102,5 +102,33 @@
     "phone": "الهاتف",
     "carsHeading": "سيارات {name}",
     "carsAvailable": "{count} سيارة متاحة لدى هذه الوكالة."
+  },
+  "admin": {
+    "title": "الإدارة",
+    "dashboardTitle": "لوحة الإدارة",
+    "dashboardSubtitle": "منصة إدارة خفيفة للتحكم بالسيارات والوكالات والعروض المميزة.",
+    "statsTotalCars": "إجمالي السيارات",
+    "statsAvailable": "متاحة",
+    "statsFeatured": "مميزة",
+    "statsAgencies": "الوكالات",
+    "carsSectionTitle": "إدارة السيارات",
+    "carsSectionSubtitle": "قم بتحديث التوفر والعروض المميزة لتحسين الظهور.",
+    "tableVehicle": "المركبة",
+    "tableAgency": "الوكالة",
+    "tablePrice": "السعر",
+    "tableStatus": "الحالة",
+    "tableActions": "الإجراءات",
+    "statusAvailable": "متاح",
+    "statusUnavailable": "غير متاح",
+    "buttonHide": "إخفاء",
+    "buttonPublish": "نشر",
+    "buttonFeatured": "تمييز",
+    "buttonUnfeatured": "إلغاء التمييز",
+    "featuredYes": "مميز",
+    "featuredNo": "تمييز",
+    "sectionAgenciesTitle": "الوكالات",
+    "sectionAgenciesSubtitle": "نظرة عامة على الوكالات المحلية وتقييماتها مع تواصل سريع عبر واتساب.",
+    "whatsapp": "واتساب",
+    "clients": "clients"
   }
 }
