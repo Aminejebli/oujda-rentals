@@ -10,16 +10,15 @@ export default async function CarsPage() {
     <main className="min-h-screen bg-slate-50 px-5 py-8 text-slate-950">
       <div className="mx-auto max-w-6xl">
         <p className="text-sm font-semibold text-emerald-700">
-          Cars in Oujda
+          Voitures à Oujda
         </p>
 
         <h1 className="mt-2 text-3xl font-bold tracking-tight">
-          Compare rental cars
+          Comparez les voitures de location
         </h1>
 
         <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
-          Browse demo cars from local Oujda rental agencies and contact them
-          directly on WhatsApp.
+          Parcourez les voitures des agences locales d'Oujda et contactez-les directement sur WhatsApp.
         </p>
 
         <CarsFilter cars={cars} agencies={agencies} />
