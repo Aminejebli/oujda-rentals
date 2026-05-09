@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import type { Agency } from "@/data/agencies";
 import type { Car } from "@/data/cars";
 import { CarCard } from "./CarCard";
+import { CarCardSkeleton } from "./Skeletons";
 
 type CarsFilterProps = {
   cars: Car[];
@@ -19,6 +20,7 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
   const [maxPrice, setMaxPrice] = useState("");
   const [pickupArea, setPickupArea] = useState("All");
   const [sortBy, setSortBy] = useState("price-low");
+  const [isLoading, setIsLoading] = useState(false);
 
   // Get unique values for filters
   const categories = useMemo(() => ["All", ...new Set(cars.map((car) => car.category))], [cars]);
@@ -28,6 +30,10 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
 
   // Filter and sort cars
   const filteredAndSortedCars = useMemo(() => {
+    setIsLoading(true);
+    // Simulate brief loading for better UX
+    setTimeout(() => setIsLoading(false), 150);
+
     let filtered = cars.filter((car) => {
       const agency = agencies.find((a) => a.id === car.agencyId);
       if (!agency) return false;
@@ -249,7 +255,13 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
       </section>
 
       {/* Results */}
-      {filteredAndSortedCars.length > 0 ? (
+      {isLoading ? (
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <CarCardSkeleton key={i} />
+          ))}
+        </div>
+      ) : filteredAndSortedCars.length > 0 ? (
         <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filteredAndSortedCars.map((car) => {
             const agency = agencies.find((item) => item.id === car.agencyId);

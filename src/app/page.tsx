@@ -1,8 +1,43 @@
 import Link from "next/link";
+import { Metadata } from "next";
 import { CarCard } from "@/components/CarCard";
 import { getAgencies, getCars } from "@/lib/supabase-data";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Location Voiture Oujda | Louez votre voiture facilement | تأجير سيارات وجدة",
+  description: "Comparez les agences de location de voitures à Oujda. Prix transparents, contact direct WhatsApp, livraison aéroport. Plus de 50 voitures disponibles.",
+  keywords: ["location voiture", "Oujda", "louer voiture Maroc", "agences location", "voitures Oujda", "taxi Oujda", "transport Oujda"],
+  authors: [{ name: "Oujda Rentals" }],
+  openGraph: {
+    title: "Location Voiture Oujda - Louez facilement",
+    description: "Comparez les meilleures agences de location de voitures à Oujda. Contact direct WhatsApp, prix transparents.",
+    url: "https://oujda-rentals.vercel.app",
+    siteName: "Oujda Rentals",
+    locale: "fr_MA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Location Voiture Oujda",
+    description: "Louez votre voiture facilement à Oujda avec contact direct WhatsApp",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://oujda-rentals.vercel.app",
+  },
+};
 
 export default async function Home() {
   const [cars, agencies] = await Promise.all([getCars(), getAgencies()]);
@@ -168,9 +203,9 @@ export default async function Home() {
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-2xl font-bold">Featured cars</h2>
+              <h2 className="text-2xl font-bold">Voitures populaires</h2>
               <p className="mt-2 text-sm text-slate-600">
-                A quick preview from local rental agencies.
+                Aperçu rapide des voitures disponibles chez nos agences partenaires.
               </p>
             </div>
 
@@ -178,19 +213,19 @@ export default async function Home() {
               href="/cars"
               className="text-sm font-semibold text-emerald-700 hover:text-emerald-800"
             >
-              View all cars
+              Voir toutes les voitures
             </Link>
           </div>
 
           <div className="mt-6 grid gap-5 md:grid-cols-3">
-            {featuredCars.map((car) => {
+            {featuredCars.map((car, index) => {
               const agency = agencies.find((item) => item.id === car.agencyId);
 
               if (!agency) {
                 return null;
               }
 
-              return <CarCard key={car.id} car={car} agency={agency} />;
+              return <CarCard key={car.id} car={car} agency={agency} priority={index < 2} />;
             })}
           </div>
         </div>

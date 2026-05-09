@@ -6,9 +6,10 @@ import type { Car } from "@/data/cars";
 type CarCardProps = {
   car: Car;
   agency: Pick<Agency, "name" | "whatsapp" | "rating">;
+  priority?: boolean;
 };
 
-export function CarCard({ car, agency }: CarCardProps) {
+export function CarCard({ car, agency, priority = false }: CarCardProps) {
   const whatsappMessage = encodeURIComponent(
     `Salam, je suis intéressé par la location de ${car.name} chez ${agency.name} à Oujda.`
   );
@@ -16,11 +17,16 @@ export function CarCard({ car, agency }: CarCardProps) {
   return (
     <article className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:border-emerald-200">
       {/* Image Section */}
-      <div className="relative h-48 w-full overflow-hidden">
+      <div className="relative h-48 w-full overflow-hidden bg-slate-100">
         <Image
           src={car.image}
           alt={car.name}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          quality={85}
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+IRjWjBqO6O2mhP//Z"
+          priority={priority}
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
         {/* Availability Badge */}
