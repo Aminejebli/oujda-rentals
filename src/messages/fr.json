@@ -63,7 +63,7 @@
     "priceRange": "Prix par jour (DH)",
     "min": "Min",
     "max": "Max",
-    "resultsFound": "{count} voiture{s}",
+    "resultsFound": "{count} voiture(s)",
     "reset": "Réinitialiser",
     "noCars": "Aucune voiture trouvée",
     "tryChangingFilters": "Essayez de modifier vos critères de recherche."
