@@ -1,0 +1,37 @@
+name: Fetch car images
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/image-sources.json'
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create images directory
+        run: mkdir -p public/images/cars
+
+      - name: Download images from mapping
+        run: |
+          echo "Downloading images from scripts/image-sources.json"
+          cat scripts/image-sources.json | jq -r 'to_entries[] | "\(.key) \(.value)"' | while read slug url; do
+            echo "- $slug -> $url"
+            # save as jpg (most commons thumbnails are jpg)
+            curl -fL "$url" -o "public/images/cars/${slug}.jpg" || (echo "Failed to download $url" && exit 1)
+            sleep 1
+          done
+
+      - name: Commit and push images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/images/cars || true
+          git commit -m "Add car images (fetched by workflow)" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
