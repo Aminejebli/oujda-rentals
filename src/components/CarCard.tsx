@@ -8,6 +8,14 @@ import type { Agency } from "@/data/agencies";
 import type { Car } from "@/data/cars";
 import { defaultLocale, getLocalePath, type Locale } from "@/lib/i18n";
 
+const CATEGORY_IMAGES: Record<"city" | "compact" | "economy" | "suv" | "luxury", string> = {
+  city: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&auto=format&fit=crop",
+  compact: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&auto=format&fit=crop",
+  economy: "https://images.unsplash.com/photo-1494972308805-463bc619d34e?w=800&auto=format&fit=crop",
+  suv: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&auto=format&fit=crop",
+  luxury: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&auto=format&fit=crop",
+};
+
 type CarCardProps = {
   car: Car;
   agency: Pick<Agency, "name" | "whatsapp">;
@@ -40,15 +48,59 @@ export function CarCard({ car, agency, priority = false }: CarCardProps) {
     <article className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:border-emerald-200 dark:border-slate-700 dark:bg-slate-950">
       <div className="relative h-48 w-full overflow-hidden bg-slate-100 dark:bg-slate-900">
         <Image
-          src={car.image}
+          src={
+            // car.image is the DB column mapping for the main image.
+            // Fallback only when it's empty / falsy / not a local path.
+            (() => {
+              const main = (car.image ?? "") as unknown as string;
+              const local = typeof main === "string" ? main : "";
+
+
+              const fallbackByCategory: Record<string, string> = {
+                // Your CarsFilter category values come from DB category.name
+                // but map to a few buckets.
+                "Economy": "/images/cars/dacia-logan-2023.jpg",
+                "Compact": "/images/cars/vw-polo-2023.jpg",
+                "City Car": "/images/cars/renault-clio-2022.jpg",
+                "SUV": "/images/cars/dacia-duster-2023.jpg",
+              };
+
+              const safeLocal = local?.trim();
+              const isLocalPath = safeLocal.startsWith("/images/");
+
+            const categoryKey = (car.category ?? "") as string;
+            return isLocalPath
+              ? safeLocal
+              : (fallbackByCategory[categoryKey] ?? "/images/cars/dacia-logan-2023.jpg");
+
+            })()
+          }
           alt={car.name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           quality={85}
           placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+IRjWjBqO6O2mhP//Z"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+IRjWjBqO6O2mhP//Z"
           priority={priority}
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover transition-transform duration-300 group-hover:scale-105 aspect-[16/10]"
+          onError={(e) => {
+            const img = e.currentTarget as HTMLImageElement;
+            if (!img) return;
+
+            const fallbackByCategory: Record<string, string> = {
+              "Economy": "/images/cars/dacia-logan-2023.jpg",
+              "Compact": "/images/cars/vw-polo-2023.jpg",
+              "City Car": "/images/cars/renault-clio-2022.jpg",
+              "SUV": "/images/cars/dacia-duster-2023.jpg",
+            };
+
+            const categoryKey = (car.category ?? "") as string;
+
+            const fallback = fallbackByCategory[categoryKey] ?? "/images/cars/dacia-logan-2023.jpg";
+
+            // Next/Image uses an underlying <img>. srcset can exist; set both.
+            img.src = fallback;
+          }}
         />
 
         <div className="absolute top-3 left-3">
