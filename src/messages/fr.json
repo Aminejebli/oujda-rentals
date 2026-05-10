@@ -130,17 +130,20 @@
     "featuredYes": "Vedette",
     "featuredNo": "Marquer",
     "sectionAgenciesTitle": "Agences",
-    "sectionAgenciesSubtitle": "Aperçu des agences locales et de leurs notes, avec contact rapide en WhatsApp."
+    "sectionAgenciesSubtitle": "Aperçu des agences locales et de leurs notes, avec contact rapide en WhatsApp.",
+    "whatsapp": "WhatsApp"
   },
+
   "logo": {
     "subtitle": "Location Voiture Maroc"
   },
-    "description": "Votre plateforme de confiance pour la location de voitures à Oujda.",
-    "quickLinks": "Liens rapides",
-    "legal": "Légal",
-    "privacy": "Politique de confidentialité",
-    "terms": "Conditions d'utilisation",
-    "contact": "Contact",
-    "rights": "Tous droits réservés."
-  }
+  "description": "Votre plateforme de confiance pour la location de voitures à Oujda.",
+  "quickLinks": "Liens rapides",
+  "legal": "Légal",
+  "privacy": "Politique de confidentialité",
+  "terms": "Conditions d'utilisation",
+  "contact": "Contact",
+  "rights": "Tous droits réservés."
 }
+
+

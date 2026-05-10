@@ -7,9 +7,10 @@ import ar from "@/messages/ar.json";
 
 const messagesByLocale: Record<Locale, typeof fr> = {
   fr,
-  en,
-  ar,
+  en: en as typeof fr,
+  ar: ar as typeof fr,
 };
+
 
 export default getRequestConfig(async ({ locale }) => {
   const resolvedLocale = (locale as Locale) ?? defaultLocale;

@@ -130,17 +130,19 @@
     "featuredYes": "Featured",
     "featuredNo": "Mark as featured",
     "sectionAgenciesTitle": "Agencies",
-    "sectionAgenciesSubtitle": "Overview of local agencies and their ratings with quick WhatsApp contact."
+    "sectionAgenciesSubtitle": "Overview of local agencies and their ratings with quick WhatsApp contact.",
+    "whatsapp": "WhatsApp"
   },
   "logo": {
     "subtitle": "Car Rental Morocco"
   },
-    "description": "Your trusted platform for car rental in Oujda.",
-    "quickLinks": "Quick links",
-    "legal": "Legal",
-    "privacy": "Privacy policy",
-    "terms": "Terms of use",
-    "contact": "Contact",
-    "rights": "All rights reserved."
-  }
+
+  "description": "Your trusted platform for car rental in Oujda.",
+  "quickLinks": "Quick links",
+  "legal": "Legal",
+  "privacy": "Privacy policy",
+  "terms": "Terms of use",
+  "contact": "Contact",
+  "rights": "All rights reserved."
 }
+

@@ -25,9 +25,12 @@ export type Agency = {
   phone: string;
   whatsapp: string;
   description: string;
+  /** Rating (from Supabase) */
+  rating?: number;
   isPremium?: boolean;
   responseTime?: string;
 };
+
 
 export type Badge = {
   title: string;
