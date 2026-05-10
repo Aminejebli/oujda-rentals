@@ -117,7 +117,7 @@ export function HomePage({ cars, agencies }: HomePageProps) {
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                   <div className="relative aspect-[4/3] w-full">
                     <Image
-                      src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Dacia_Logan_II_%E2%80%93_Frontansicht%2C_13._Juli_2013%2C_D%C3%BCsseldorf.jpg/1280px-Dacia_Logan_II_%E2%80%93_Frontansicht%2C_13._Juli_2013%2C_D%C3%BCsseldorf.jpg"
                       alt={t('hero.imageAlt')}
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"

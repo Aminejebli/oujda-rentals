@@ -8,12 +8,13 @@ import type { Agency } from "@/data/agencies";
 import type { Car } from "@/data/cars";
 import { defaultLocale, getLocalePath, type Locale } from "@/lib/i18n";
 
+// Category-level fallback images when the car.image is missing or not a local path.
 const CATEGORY_IMAGES: Record<"city" | "compact" | "economy" | "suv" | "luxury", string> = {
-  city: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&auto=format&fit=crop",
-  compact: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&auto=format&fit=crop",
-  economy: "https://images.unsplash.com/photo-1494972308805-463bc619d34e?w=800&auto=format&fit=crop",
-  suv: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&auto=format&fit=crop",
-  luxury: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&auto=format&fit=crop",
+  city: "/images/cars/renault-clio-2022.jpg",
+  compact: "/images/cars/vw-polo-2023.jpg",
+  economy: "/images/cars/dacia-logan-2023.jpg",
+  suv: "/images/cars/dacia-duster-2023.jpg",
+  luxury: "/images/cars/kia-sportage-2024.jpg",
 };
 
 type CarCardProps = {
