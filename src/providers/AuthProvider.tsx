@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
-import { createClient, type Session, type SupabaseClient } from "@supabase/supabase-js";
+import { supabase } from "@/lib/supabase";
+import type { Session, SupabaseClient } from "@supabase/supabase-js";
 
 type AuthContextValue = {
   supabase: SupabaseClient;
@@ -16,17 +17,7 @@ type AuthContextValue = {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-function getEnv() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-  if (!url || !key) throw new Error("Missing Supabase environment variables.");
-  return { url, key };
-}
-
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const { url, key } = useMemo(() => getEnv(), []);
-  const supabase = useMemo(() => createClient(url, key), [url, key]);
-
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -58,7 +49,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       mounted = false;
       subscription.unsubscribe();
     };
-  }, [supabase]);
+  }, []);
 
   const value: AuthContextValue = useMemo(
     () => ({
@@ -87,7 +78,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (error) throw new Error(error.message);
       },
     }),
-    [supabase, session, loading]
+    [session, loading]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
