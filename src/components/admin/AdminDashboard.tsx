@@ -151,14 +151,10 @@ export function AdminDashboard() {
                   <h3 className="text-lg font-semibold text-slate-950 dark:text-slate-100">{agency.name}</h3>
                   <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{agency.area}, {agency.city}</p>
                 </div>
-                <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-200">{agency.rating}</span>
               </div>
               <p className="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">{agency.description}</p>
               <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-600 dark:text-slate-300">
                 <span className="rounded-full bg-white px-3 py-1 border border-slate-200 dark:border-slate-700 dark:bg-slate-950">{agency.responseTime}</span>
-                <span className="rounded-full bg-white px-3 py-1 border border-slate-200 dark:border-slate-700 dark:bg-slate-950">
-                  {agency.totalClients ?? 0}+ {t("admin.clients")}
-                </span>
               </div>
               <a
                 href={`https://wa.me/${agency.whatsapp}`}

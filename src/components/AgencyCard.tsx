@@ -19,7 +19,7 @@ export function AgencyCard({ agency, carsCount }: AgencyCardProps) {
   const prefix = getLocalePath(`/${locale}`, locale);
 
   const whatsappMessage = encodeURIComponent(
-    `Salam, je veux louer une voiture chez ${agency.name} à Oujda. Pouvez-vous me donner les détails ?`
+    t('agencyCard.whatsappMessage', { agency: agency.name })
   );
 
   return (
@@ -33,10 +33,6 @@ export function AgencyCard({ agency, carsCount }: AgencyCardProps) {
             {agency.area}, {agency.city}
           </p>
         </div>
-
-        <span className="rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-200">
-          {agency.rating}
-        </span>
       </div>
 
       <p className="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">

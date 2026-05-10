@@ -17,9 +17,9 @@ export function CarDetailPage({ car, agency }: CarDetailPageProps) {
   const t = useTranslations();
   const params = useParams();
   const locale = (params?.locale as Locale) ?? defaultLocale;
-  const prefix = getLocalePath(`/${locale}/cars`, locale);
+  const prefix = getLocalePath(`/${locale}`, locale);
   const whatsappMessage = encodeURIComponent(
-    `Salam, je suis intéressé(e) par la location de ${car.name} chez ${agency.name} à Oujda.`
+    t('detail.whatsappMessage', { car: car.name, agency: agency.name })
   );
   const galleryImages = [car.image, ...(car.gallery ?? [])].slice(0, 3);
 

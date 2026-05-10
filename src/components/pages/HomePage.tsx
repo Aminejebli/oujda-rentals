@@ -99,7 +99,7 @@ export function HomePage({ cars, agencies }: HomePageProps) {
                   {t('hero.ctaCars')}
                 </Link>
                 <a
-                  href="https://wa.me/212600000000?text=Salam, je veux louer une voiture à Oujda"
+                  href="https://wa.me/212705559917?text=Salam, je veux louer une voiture à Oujda"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-green-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 flex items-center justify-center gap-2 sm:justify-start"

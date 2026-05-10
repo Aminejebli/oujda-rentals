@@ -18,6 +18,7 @@
     "ctaWhatsApp": "Contact on WhatsApp",
     "imageAlt": "Modern rental car in Oujda",
     "priceStarting": "From 350 DH/day",
+    "fromPrice": "From {price} DH/day",
     "available": "Available",
     "featureCars": "Available cars",
     "featureAgencies": "Reliable agencies",
@@ -53,7 +54,6 @@
     "sort": {
       "price-low": "Price: low to high",
       "price-high": "Price: high to low",
-      "rating": "Top rating",
       "name": "Name A-Z"
     },
     "category": "Category",
@@ -76,12 +76,14 @@
     "quickReply": "Quick reply",
     "insuranceIncluded": "Insurance included",
     "details": "View details",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "whatsappMessage": "Hello, I want to rent {car} from {agency} in Oujda. Can you send me the details?"
   },
   "agencyCard": {
     "cars": "cars",
     "whatsapp": "WhatsApp",
-    "viewAgency": "View agency"
+    "viewAgency": "View agency",
+    "whatsappMessage": "Hello, I want to rent a car from {agency} in Oujda. Can you give me the details?"
   },
   "detail": {
     "backToCars": "Back to cars",
@@ -91,7 +93,8 @@
     "seats": "Seats",
     "agencyArea": "Agency area",
     "viewAgency": "View agency",
-    "contactWhatsApp": "Contact on WhatsApp"
+    "contactWhatsApp": "Contact on WhatsApp",
+    "whatsappMessage": "Hello, I'm interested in renting {car} from {agency} in Oujda."
   },
   "agency": {
     "backToAgencies": "Back to agencies",
@@ -127,8 +130,17 @@
     "featuredYes": "Featured",
     "featuredNo": "Mark as featured",
     "sectionAgenciesTitle": "Agencies",
-    "sectionAgenciesSubtitle": "Overview of local agencies and their ratings with quick WhatsApp contact.",
-    "whatsapp": "WhatsApp",
-    "clients": "clients"
+    "sectionAgenciesSubtitle": "Overview of local agencies and their ratings with quick WhatsApp contact."
+  },
+  "logo": {
+    "subtitle": "Car Rental Morocco"
+  },
+    "description": "Your trusted platform for car rental in Oujda.",
+    "quickLinks": "Quick links",
+    "legal": "Legal",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "contact": "Contact",
+    "rights": "All rights reserved."
   }
 }

@@ -77,8 +77,8 @@ insert into agencies (id, name, slug, city, area, phone, whatsapp, rating, descr
     'oujda-auto-rent',
     'Oujda',
     'City Center',
-    '+212 600 000 000',
-    '212600000000',
+    '+212 705 559 917',
+    '212705559917',
     4.8,
     'Local car rental agency near Oujda city center.'
   ),
@@ -88,8 +88,8 @@ insert into agencies (id, name, slug, city, area, phone, whatsapp, rating, descr
     'atlas-cars-oujda',
     'Oujda',
     'Oujda Airport',
-    '+212 600 000 001',
-    '212600000001',
+    '+212 705 559 917',
+    '212705559917',
     4.7,
     'Airport-friendly rental agency with economy and family cars.'
   ),
@@ -99,8 +99,8 @@ insert into agencies (id, name, slug, city, area, phone, whatsapp, rating, descr
     'oriental-rent-car',
     'Oujda',
     'Hay Al Qods',
-    '+212 600 000 002',
-    '212600000002',
+    '+212 705 559 917',
+    '212705559917',
     4.6,
     'Trusted local agency serving Oujda and nearby cities.'
   )

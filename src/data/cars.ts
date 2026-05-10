@@ -7,7 +7,7 @@ export const cars: Car[] = [
     agencyId: 1,
     name: "Dacia Logan 2023",
     slug: "dacia-logan-2023",
-    price: 280,
+    price: 250,
     transmission: "Manuelle",
     category: "Économique",
     seats: 5,

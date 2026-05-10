@@ -18,6 +18,7 @@
     "ctaWhatsApp": "Contactez-nous sur WhatsApp",
     "imageAlt": "Voiture de location moderne à Oujda",
     "priceStarting": "À partir de 350 DH/jour",
+    "fromPrice": "À partir de {price} DH/jour",
     "available": "Disponible",
     "featureCars": "Voitures disponibles",
     "featureAgencies": "Agences fiables",
@@ -53,7 +54,6 @@
     "sort": {
       "price-low": "Prix : croissant",
       "price-high": "Prix : décroissant",
-      "rating": "Meilleure note",
       "name": "Nom A-Z"
     },
     "category": "Catégorie",
@@ -76,12 +76,14 @@
     "quickReply": "Réponse rapide",
     "insuranceIncluded": "Assurance incluse",
     "details": "Voir détails",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "whatsappMessage": "Salam, je veux louer {car} chez {agency} à Oujda. Pouvez-vous m'envoyer les détails ?"
   },
   "agencyCard": {
     "cars": "voitures",
     "whatsapp": "WhatsApp",
-    "viewAgency": "Voir agence"
+    "viewAgency": "Voir agence",
+    "whatsappMessage": "Salam, je veux louer une voiture chez {agency} à Oujda. Pouvez-vous me donner les détails ?"
   },
   "detail": {
     "backToCars": "Retour aux voitures",
@@ -91,7 +93,8 @@
     "seats": "Places",
     "agencyArea": "Zone de l'agence",
     "viewAgency": "Voir agence",
-    "contactWhatsApp": "Contactez sur WhatsApp"
+    "contactWhatsApp": "Contactez sur WhatsApp",
+    "whatsappMessage": "Salam, je suis intéressé(e) par la location de {car} chez {agency} à Oujda."
   },
   "agency": {
     "backToAgencies": "Retour aux agences",
@@ -127,8 +130,17 @@
     "featuredYes": "Vedette",
     "featuredNo": "Marquer",
     "sectionAgenciesTitle": "Agences",
-    "sectionAgenciesSubtitle": "Aperçu des agences locales et de leurs notes, avec contact rapide en WhatsApp.",
-    "whatsapp": "WhatsApp",
-    "clients": "clients"
+    "sectionAgenciesSubtitle": "Aperçu des agences locales et de leurs notes, avec contact rapide en WhatsApp."
+  },
+  "logo": {
+    "subtitle": "Location Voiture Maroc"
+  },
+    "description": "Votre plateforme de confiance pour la location de voitures à Oujda.",
+    "quickLinks": "Liens rapides",
+    "legal": "Légal",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "contact": "Contact",
+    "rights": "Tous droits réservés."
   }
 }

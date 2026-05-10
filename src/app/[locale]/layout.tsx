@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { locales, rtlLocales, type Locale } from "@/lib/i18n";
 
 export const dynamicParams = false;
@@ -37,6 +38,7 @@ export default async function LocaleLayout({
       <div dir={dir} className={rtlLocales.includes(locale) ? "rtl" : "ltr"} suppressHydrationWarning>
         <Header />
         {children}
+        <Footer />
       </div>
     </NextIntlClientProvider>
   );

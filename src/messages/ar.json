@@ -18,6 +18,7 @@
     "ctaWhatsApp": "تواصل عبر واتساب",
     "imageAlt": "سيارة إيجار حديثة في وجدة",
     "priceStarting": "من 350 درهم/يوم",
+    "fromPrice": "من {price} درهم/يوم",
     "available": "متاحة",
     "featureCars": "السيارات المتاحة",
     "featureAgencies": "الوكالات الموثوقة",
@@ -53,7 +54,6 @@
     "sort": {
       "price-low": "السعر: من الأقل للأعلى",
       "price-high": "السعر: من الأعلى للأقل",
-      "rating": "أفضل تقييم",
       "name": "الاسم A-Z"
     },
     "category": "الفئة",
@@ -76,12 +76,14 @@
     "quickReply": "رد سريع",
     "insuranceIncluded": "التأمين مشمول",
     "details": "عرض التفاصيل",
-    "whatsapp": "واتساب"
+    "whatsapp": "واتساب",
+    "whatsappMessage": "السلام عليكم، أريد تأجير {car} من {agency} في وجدة. هل يمكنك إرسال التفاصيل؟"
   },
   "agencyCard": {
     "cars": "سيارات",
     "whatsapp": "واتساب",
-    "viewAgency": "عرض الوكالة"
+    "viewAgency": "عرض الوكالة",
+    "whatsappMessage": "السلام عليكم، أريد تأجير سيارة من {agency} في وجدة. هل يمكنك إعطائي التفاصيل؟"
   },
   "detail": {
     "backToCars": "العودة إلى السيارات",
@@ -91,7 +93,8 @@
     "seats": "المقاعد",
     "agencyArea": "منطقة الوكالة",
     "viewAgency": "عرض الوكالة",
-    "contactWhatsApp": "التواصل عبر واتساب"
+    "contactWhatsApp": "تواصل عبر واتساب",
+    "whatsappMessage": "السلام عليكم، أنا مهتم بتأجير {car} من {agency} في وجدة."
   },
   "agency": {
     "backToAgencies": "العودة إلى الوكالات",
@@ -127,8 +130,17 @@
     "featuredYes": "مميز",
     "featuredNo": "تمييز",
     "sectionAgenciesTitle": "الوكالات",
-    "sectionAgenciesSubtitle": "نظرة عامة على الوكالات المحلية وتقييماتها مع تواصل سريع عبر واتساب.",
-    "whatsapp": "واتساب",
-    "clients": "clients"
+    "sectionAgenciesSubtitle": "نظرة عامة على الوكالات المحلية وتقييماتها مع تواصل سريع عبر واتساب."
+  },
+  "logo": {
+    "subtitle": "تأجير سيارات المغرب"
+  },
+    "description": "منصتك الموثوقة لتأجير السيارات في وجدة.",
+    "quickLinks": "روابط سريعة",
+    "legal": "قانوني",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الاستخدام",
+    "contact": "اتصل بنا",
+    "rights": "جميع الحقوق محفوظة."
   }
 }

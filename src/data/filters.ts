@@ -3,7 +3,6 @@ import type { FilterOption } from "@/types/domain";
 export const sortOptions: FilterOption[] = [
   { value: "price-low", label: "Prix croissant" },
   { value: "price-high", label: "Prix décroissant" },
-  { value: "rating", label: "Meilleure note" },
   { value: "name", label: "Nom A-Z" },
 ];
 

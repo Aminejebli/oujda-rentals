@@ -41,7 +41,7 @@ export function Header() {
             <div className="h-4 w-px bg-slate-300 dark:bg-slate-700" />
 
             <a
-              href="https://wa.me/212600000000?text=Salam, je veux louer une voiture à Oujda"
+              href="https://wa.me/212705559917?text=Salam, je veux louer une voiture à Oujda"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-whatsapp text-sm"

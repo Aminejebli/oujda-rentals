@@ -81,11 +81,6 @@ export function CarsFilter({ cars, agencies }: CarsFilterProps) {
           return priceA - priceB;
         case "price-high":
           return priceB - priceA;
-        case "rating": {
-          const agencyA = agencies.find((ag) => ag.id === a.agencyId);
-          const agencyB = agencies.find((ag) => ag.id === b.agencyId);
-          return (agencyB?.rating || 0) - (agencyA?.rating || 0);
-        }
         case "name":
           return a.name.localeCompare(b.name);
         default:

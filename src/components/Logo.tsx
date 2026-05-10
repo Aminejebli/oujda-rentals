@@ -1,4 +1,10 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 export function Logo() {
+  const t = useTranslations();
+
   return (
     <div className="flex items-center gap-3">
       <div className="relative">
@@ -34,7 +40,7 @@ export function Logo() {
       </div>
       <div className="hidden sm:block">
         <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">Oujda Rentals</h1>
-        <p className="text-xs text-slate-600 dark:text-slate-300">Location Voiture Maroc</p>
+        <p className="text-xs text-slate-600 dark:text-slate-300">{t('logo.subtitle')}</p>
       </div>
     </div>
   );

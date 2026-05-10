@@ -24,11 +24,9 @@ export type Agency = {
   area: string;
   phone: string;
   whatsapp: string;
-  rating: number;
   description: string;
   isPremium?: boolean;
   responseTime?: string;
-  totalClients?: number;
 };
 
 export type Badge = {
