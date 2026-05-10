@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -8,6 +8,7 @@ import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { defaultLocale, getLocalePath, localeNames, locales, type Locale } from "@/lib/i18n";
 import { useAuth } from "@/providers/AuthProvider";
+import { getMyProfile, type ProfileRow } from "@/lib/profile";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,8 +19,39 @@ export function Header() {
   const locale = (params?.locale as Locale) ?? defaultLocale;
 
   const t = useTranslations();
-
   const { session, loading, signOut } = useAuth();
+
+  const [profile, setProfile] = useState<ProfileRow | null>(null);
+  const [profileLoading, setProfileLoading] = useState(false);
+
+  useEffect(() => {
+    if (!loading && session) {
+      (async () => {
+        try {
+          setProfileLoading(true);
+          const next = await getMyProfile();
+          setProfile(next);
+        } catch {
+          setProfile(null);
+        } finally {
+          setProfileLoading(false);
+        }
+      })();
+    }
+
+    if (!loading && !session) {
+      queueMicrotask(() => {
+        setProfile(null);
+        setProfileLoading(false);
+      });
+    }
+  }, [loading, session]);
+
+  const userLabel =
+    profile?.full_name?.trim() ||
+    profile?.phone?.trim() ||
+    session?.user.email ||
+    "Account";
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm shadow-soft dark:border-slate-800 dark:bg-slate-950/95">
@@ -42,7 +74,6 @@ export function Header() {
             >
               {t("header.agencies")}
             </Link>
-
             <div className="h-4 w-px bg-slate-300 dark:bg-slate-700" />
 
             <a
@@ -102,14 +133,22 @@ export function Header() {
                 aria-haspopup="menu"
                 aria-expanded={userMenuOpen}
               >
-                {session.user.email ?? "Account"}
+                {profileLoading ? "…" : userLabel}
               </button>
 
               {userMenuOpen ? (
                 <div
                   role="menu"
-                  className="absolute right-0 mt-2 w-48 rounded-xl border border-slate-200 bg-white p-2 shadow-sm dark:border-slate-700 dark:bg-slate-950"
+                  className="absolute right-0 mt-2 w-56 rounded-xl border border-slate-200 bg-white p-2 shadow-sm dark:border-slate-700 dark:bg-slate-950"
                 >
+                  <Link
+                    href={`/${locale}/profile`}
+                    onClick={() => setUserMenuOpen(false)}
+                    className="block rounded-lg px-3 py-2 text-left text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800"
+                  >
+                    Profile
+                  </Link>
+
                   <button
                     type="button"
                     onClick={async () => {
@@ -137,12 +176,7 @@ export function Header() {
               {menuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
@@ -203,17 +237,27 @@ export function Header() {
               ) : null}
 
               {!loading && session ? (
-                <button
-                  type="button"
-                  onClick={async () => {
-                    await signOut();
-                    setMenuOpen(false);
-                    window.location.href = `/${locale}/cars`;
-                  }}
-                  className="rounded-lg border border-black bg-white px-3 py-2 text-sm font-semibold text-black shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
-                >
-                  Logout
-                </button>
+                <>
+                  <Link
+                    href={`/${locale}/profile`}
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-center text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200"
+                  >
+                    Profile
+                  </Link>
+
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      await signOut();
+                      setMenuOpen(false);
+                      window.location.href = `/${locale}/cars`;
+                    }}
+                    className="rounded-lg border border-black bg-white px-3 py-2 text-center text-sm font-semibold text-black shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                  >
+                    Logout
+                  </button>
+                </>
               ) : null}
 
               <ThemeToggle showLabel fullWidth className="mt-3" onToggle={() => setMenuOpen(false)} />
