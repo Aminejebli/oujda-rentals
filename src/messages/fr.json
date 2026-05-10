@@ -143,7 +143,14 @@
   "privacy": "Politique de confidentialité",
   "terms": "Conditions d'utilisation",
   "contact": "Contact",
-  "rights": "Tous droits réservés."
+  "rights": "Tous droits réservés.",
+  "footer": {
+    "description": "Votre plateforme de confiance pour la location de voitures à Oujda.",
+    "quickLinks": "Liens rapides",
+    "legal": "Légal",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "contact": "Contact",
+    "rights": "Tous droits réservés."
+  }
 }
-
-

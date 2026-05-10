@@ -8,15 +8,6 @@ import type { Agency } from "@/data/agencies";
 import type { Car } from "@/data/cars";
 import { defaultLocale, getLocalePath, type Locale } from "@/lib/i18n";
 
-// Category-level fallback images when the car.image is missing or not a local path.
-const CATEGORY_IMAGES: Record<"city" | "compact" | "economy" | "suv" | "luxury", string> = {
-  city: "/images/cars/renault-clio-2022.jpg",
-  compact: "/images/cars/vw-polo-2023.jpg",
-  economy: "/images/cars/dacia-logan-2023.jpg",
-  suv: "/images/cars/dacia-duster-2023.jpg",
-  luxury: "/images/cars/kia-sportage-2024.jpg",
-};
-
 type CarCardProps = {
   car: Car;
   agency: Pick<Agency, "name" | "whatsapp">;

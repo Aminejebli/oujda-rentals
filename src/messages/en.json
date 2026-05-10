@@ -143,6 +143,14 @@
   "privacy": "Privacy policy",
   "terms": "Terms of use",
   "contact": "Contact",
-  "rights": "All rights reserved."
+  "rights": "All rights reserved.",
+  "footer": {
+    "description": "Your trusted platform for car rental in Oujda.",
+    "quickLinks": "Quick links",
+    "legal": "Legal",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "contact": "Contact",
+    "rights": "All rights reserved."
+  }
 }
-

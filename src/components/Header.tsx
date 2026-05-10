@@ -7,15 +7,19 @@ import { useTranslations } from "next-intl";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { defaultLocale, getLocalePath, localeNames, locales, type Locale } from "@/lib/i18n";
+import { useAuth } from "@/providers/AuthProvider";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const params = useParams();
   const pathname = usePathname() ?? `/${defaultLocale}`;
   const locale = (params?.locale as Locale) ?? defaultLocale;
 
   const t = useTranslations();
+
+  const { session, loading, signOut } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm shadow-soft dark:border-slate-800 dark:bg-slate-950/95">
@@ -38,6 +42,7 @@ export function Header() {
             >
               {t("header.agencies")}
             </Link>
+
             <div className="h-4 w-px bg-slate-300 dark:bg-slate-700" />
 
             <a
@@ -50,7 +55,7 @@ export function Header() {
             </a>
           </nav>
 
-          <div className="flex flex-wrap items-center gap-2 md:gap-3">
+          <div className="flex flex-wrap items-center gap-2 md:gap-3 relative">
             <div className="flex flex-wrap items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-2 text-xs text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
               <span>{t("header.language")}:</span>
               {locales.map((item) => (
@@ -71,6 +76,56 @@ export function Header() {
             <ThemeToggle showLabel />
           </div>
 
+          {!loading && !session ? (
+            <div className="hidden md:flex items-center gap-2">
+              <Link
+                href={`/${locale}/login`}
+                className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200"
+              >
+                Login
+              </Link>
+              <Link
+                href={`/${locale}/signup`}
+                className="rounded-lg border border-black bg-white px-3 py-2 text-xs font-semibold text-black shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+              >
+                Sign up
+              </Link>
+            </div>
+          ) : null}
+
+          {!loading && session ? (
+            <div className="relative hidden md:block">
+              <button
+                type="button"
+                onClick={() => setUserMenuOpen((v) => !v)}
+                className="rounded-full border border-slate-200 bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                aria-haspopup="menu"
+                aria-expanded={userMenuOpen}
+              >
+                {session.user.email ?? "Account"}
+              </button>
+
+              {userMenuOpen ? (
+                <div
+                  role="menu"
+                  className="absolute right-0 mt-2 w-48 rounded-xl border border-slate-200 bg-white p-2 shadow-sm dark:border-slate-700 dark:bg-slate-950"
+                >
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      await signOut();
+                      setUserMenuOpen(false);
+                      window.location.href = `/${locale}/cars`;
+                    }}
+                    className="w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -82,7 +137,12 @@ export function Header() {
               {menuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               )}
             </svg>
           </button>
@@ -122,6 +182,39 @@ export function Header() {
                   </Link>
                 ))}
               </div>
+
+              {!loading && !session ? (
+                <div className="flex items-center gap-2">
+                  <Link
+                    href={`/${locale}/login`}
+                    className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-center text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href={`/${locale}/signup`}
+                    className="flex-1 rounded-lg border border-black bg-white px-3 py-2 text-center text-sm font-semibold text-black shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Sign up
+                  </Link>
+                </div>
+              ) : null}
+
+              {!loading && session ? (
+                <button
+                  type="button"
+                  onClick={async () => {
+                    await signOut();
+                    setMenuOpen(false);
+                    window.location.href = `/${locale}/cars`;
+                  }}
+                  className="rounded-lg border border-black bg-white px-3 py-2 text-sm font-semibold text-black shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                >
+                  Logout
+                </button>
+              ) : null}
 
               <ThemeToggle showLabel fullWidth className="mt-3" onToggle={() => setMenuOpen(false)} />
             </div>
