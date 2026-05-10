@@ -57,13 +57,63 @@ export default function AdminApplicationsPage() {
     setSubmittingId(id);
     setError(null);
 
-    const { error: updateError } = await supabase
-      .from("agency_applications")
-      .update({ status })
-      .eq("id", id);
+    try {
+      // Fetch application details first (needed for promotion + agency insert)
+      const { data: app, error: appError } = await supabase
+        .from("agency_applications")
+        .select("user_id, agency_name, address, phone, status")
+        .eq("id", id)
+        .maybeSingle();
 
-    if (updateError) {
-      setError(updateError.message);
+      if (appError) throw new Error(appError.message);
+      if (!app) throw new Error("Application not found.");
+
+      if (status === "approved") {
+        const normalize = (value: string) =>
+          value
+            .trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)+/g, "");
+
+        const slug = normalize(app.agency_name);
+
+        // 1) Promote user role
+        const { error: profileError } = await supabase
+          .from("profiles")
+          .update({ role: "agency" })
+          .eq("id", app.user_id);
+
+        if (profileError) throw new Error(profileError.message);
+
+        // 2) Create agency record in Oujda
+        const description = `Local agency approved from application submitted by ${app.user_id}.`;
+
+        const { error: agencyError } = await supabase
+          .from("agencies")
+          .upsert({
+            name: app.agency_name,
+            slug,
+            city: "Oujda",
+            area: app.address,
+            phone: app.phone,
+            whatsapp: app.phone,
+            rating: 4.5,
+            description,
+          });
+
+        if (agencyError) throw new Error(agencyError.message);
+      }
+
+      // 3) Update application status
+      const { error: updateError } = await supabase
+        .from("agency_applications")
+        .update({ status })
+        .eq("id", id);
+
+      if (updateError) throw new Error(updateError.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to update application.");
       setSubmittingId(null);
       return;
     }
